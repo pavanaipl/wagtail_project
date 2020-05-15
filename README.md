@@ -11,7 +11,7 @@ $ conda activate <environment_name>
 
 2. Clone project to the local machine
 In the terminal, navigate to the location where the project folder has to be created. Then enter the git command to clone the project:
-$ git clone https://github.com/pavanaipl/pivottable_task.git
+$ git clone https://github.com/pavanaipl/wagtail_project.git
 
 
 3. Install the project requirements
