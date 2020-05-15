@@ -6,7 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from django.urls import path, re_path
-
+from testapp.views import testing
 from search import views as search_views
 
 urlpatterns = [
@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     re_path(r'^blog/', include(wagtail_urls)),
     url(r'^search/$', search_views.search, name='search'),
+    url(r'^test/$', testing, name='test'),
 
 
 ]
