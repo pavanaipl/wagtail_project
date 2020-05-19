@@ -5,7 +5,9 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
+  <div class="jumbotron">
     {{ page.body|richtext }}
+  </div>
+  <p><a href="http://127.0.0.1:8000/child-page/">Go to blog details</a></p>
 
-    <p><a href="http://127.0.0.1:8000/child-page/">Go to blog details</a></p>
 {% endblock %}

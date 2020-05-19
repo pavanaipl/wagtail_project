@@ -5,13 +5,13 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
+   <div class="jumbotron">
+        <h1>{{ page.title }}</h1>
+        <p class="meta">{{ page.date }}</p>
 
 
-    {{ page.body|richtext }}
-
-    <p><a href="http://127.0.0.1:8000/child-page/pavan-details/">Go to user details</a></p>
-    <p><a href="http://127.0.0.1:8000">Return to home page</a></p>
-
+        {{ page.body|richtext }}
+  </div>
+ <p><a href="http://127.0.0.1:8000/child-page/pavan-details/">Go to user details</a></p>
+ <p><a href="http://127.0.0.1:8000">Return to home page</a></p>
 {% endblock %}

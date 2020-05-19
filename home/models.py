@@ -7,6 +7,9 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 
 class HomePage(Page):
+
+    template = 'home/home_page.html'
+    max_count = 1
     author = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=150, null=True, blank=True)
     body = RichTextField()

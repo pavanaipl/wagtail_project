@@ -8,6 +8,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.urls import path, re_path
 from testapp.views import testing
 from search import views as search_views
+if settings.DEBUG:
+    import debug_toolbar
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -15,6 +17,7 @@ urlpatterns = [
     re_path(r'^blog/', include(wagtail_urls)),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^test/$', testing, name='test'),
+    path('__debug__/', include(debug_toolbar.urls)),
 
 
 ]
