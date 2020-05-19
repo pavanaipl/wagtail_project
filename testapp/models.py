@@ -8,6 +8,8 @@ from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from wagtail.search import index
 from wagtail.images.edit_handlers import ImageChooserPanel
+from django.shortcuts import render
+
 # Create your models here.
 
 class UsersDetails(Page):
@@ -49,3 +51,66 @@ class BlogPage(Page):
         FieldPanel('body', classname="full"),
     ]
 
+
+class EmployeeDetails(models.Model):
+
+    name = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(null=True, blank=True)
+    designation = RichTextField(blank=True)
+    number = models.IntegerField()
+
+
+from modelcluster.fields import ParentalKey
+from wagtail.admin.edit_handlers import (
+    FieldPanel, FieldRowPanel,
+    InlinePanel, MultiFieldPanel
+)
+from wagtail.core.fields import RichTextField
+from wagtail.contrib.forms.models import AbstractForm, AbstractFormField
+
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', on_delete=models.CASCADE, related_name='form_fields')
+
+
+class FormPage(AbstractForm):
+    intro = RichTextField(blank=True)
+    thank_you_text = RichTextField(blank=True)
+
+    content_panels = AbstractForm.content_panels + [
+        FieldPanel('intro', classname="full"),
+        InlinePanel('form_fields', label="Form fields"),
+        FieldPanel('thank_you_text', classname="full"),
+
+    ]
+
+
+class FlavourSuggestionPage(Page):
+    intro = RichTextField(blank=True)
+    thankyou_page_title = models.CharField(
+        max_length=255, help_text="Title text to use for the 'thank you' page")
+
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full"),
+        FieldPanel('thankyou_page_title'),
+    ]
+
+    def serve(self, request):
+        from testapp.forms import EmployeeForm
+
+        if request.method == 'POST':
+            form = EmployeeForm(request.POST)
+            if form.is_valid():
+                flavour = form.save()
+                return render(request, 'testapp/thankyou.html', {
+                    'page': self,
+                    'flavour': flavour,
+                })
+        else:
+            form = EmployeeForm()
+
+        return render(request, 'testapp/suggest.html', {
+            'page': self,
+            'form': form,
+        })

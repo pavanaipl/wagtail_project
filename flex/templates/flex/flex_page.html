@@ -6,8 +6,11 @@
 
 {% block content %}
   <div class="jumbotron">
-    {{ page.body|richtext }}
+    {{ page.subtitle|richtext }}
   </div>
-    <p><a href="http://127.0.0.1:8000/child-page/">Go to blog details</a></p>
+
+{% for blocks in page.content%}
+    {% include_block blocks %}
+{% endfor %}
 
 {% endblock %}

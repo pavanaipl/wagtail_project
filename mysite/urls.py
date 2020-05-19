@@ -16,8 +16,8 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     re_path(r'^blog/', include(wagtail_urls)),
     url(r'^search/$', search_views.search, name='search'),
-    url(r'^test/$', testing, name='test'),
     path('__debug__/', include(debug_toolbar.urls)),
+    url(r'', include('testapp.urls')),
 
 
 ]

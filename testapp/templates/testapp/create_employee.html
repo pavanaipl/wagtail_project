@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 style="font-family: 'Roboto', sans-serif;font-size:25px;color:#255388;">Add details</h1>
+    <form method="POST" class="post-form" style="font-family: 'Roboto', sans-serif;font-size: 13px;color:#255388;">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+</div>
+{% endblock %}

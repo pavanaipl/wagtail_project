@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 style="font-family: 'Roboto', sans-serif;font-size: 13px;color:#255388;">Name: {{ post.name}}</h1>
+        <h1 style="font-family: 'Roboto', sans-serif;font-size: 13px;color:#255388;">Email: {{ post.email }}</h1>
+        <h1 style="font-family: 'Roboto', sans-serif;font-size: 13px;color:#255388;">Designation: {{ post.designation }}</h1>
+        <h1 style="font-family: 'Roboto', sans-serif;font-size: 13px;color:#255388;">number: {{ post.number}}</h1>
+    </div>
+{% endblock %}
